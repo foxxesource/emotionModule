@@ -93,6 +93,7 @@ const emotionMap = {
     },
 };
 
+
 function getEmotionData(emotion) {
     const e = emotion.toLowerCase();
     return emotionMap[e] || {
@@ -125,4 +126,11 @@ if (require.main === module) {
     runEmotionCLI();
 }
 
-module.exports = { getEmotionData, runEmotionCLI };
+// usable in react
+function getEmotionFromInput(value) {
+    if (!value || typeof value !== 'string') return null;
+    const emotion = value.trim().toLowerCase();
+    return getEmotionData(emotion);
+}
+
+module.exports = { getEmotionData, runEmotionCLI, getEmotionFromInput };
